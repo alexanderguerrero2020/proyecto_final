@@ -1,0 +1,179 @@
+version: 2
+
+sources:
+  - name: google_drive # name of the source
+    schema: google_drive # this is the schema our raw data lives in
+    database: ALUMNO9_DEV_BRONZE_DB # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    # freshness:
+    #   warn_after: { count: 150, period: day }
+    #   error_after: { count: 300, period: day }
+
+    tables:
+      - name: city
+        description: ""
+        columns:
+          - name: id
+          - name: name
+          - name: country_code
+
+      - name: company
+        description: ""
+        columns:
+          - name: id
+          - name: name
+          - name: address
+          - name: zip_code
+          - name: city_id
+          - name: country_code
+          - name: kind_of_organization
+          - name: total_asset
+          - name: total_liability
+          - name: registration_body_id
+          - name: registration_date
+
+      - name: company_film
+        description: ""
+        columns:
+          - name: company_id
+          - name: film_movie_code
+
+      - name: company_grant
+        description: ""
+        columns:
+          - name: company_id
+          - name: grant_id
+
+      - name: company_shareholder
+        description: ""
+        columns:
+          - name: company_id
+          - name: shareholder_id
+
+      - name: country
+        description: ""
+        columns:
+          - name: code
+          - name: name
+          - name: isd_code
+
+      - name: crew
+        description: ""
+        columns:
+          - name: sn
+          - name: crew_id
+          - name: role_id
+
+      - name: crew_info
+        description: ""
+        columns:
+          - name: crew_id
+          - name: movie_code
+          - name: role_id
+          - name: hourly_rate
+          - name: daily_bonus
+          - name: scene_bonus
+          - name: completion_bonus
+          - name: contractual_incentive
+
+      - name: department
+        description: ""
+        columns:
+          - name: id
+          - name: name
+
+      - name: department_address
+        description: ""
+        columns:
+          - name: department_id
+          - name: company_id
+          - name: building
+          - name: address
+
+      - name: employee
+        description: ""
+        columns:
+          - name: id
+          - name: first_name
+          - name: middle_name
+          - name: first_name
+          - name: gender
+          - name: date_of_birth
+          - name: company_id
+          - name: employee_rol
+          - name: date_started
+          - name: email_address
+
+      - name: film
+        description: ""
+        columns:
+          - name: movie_code
+          - name: title
+          - name: release_year
+          - name: first_released
+
+      - name: grant_request
+        description: ""
+        columns:
+          - name: id
+          - name: title
+          - name: funding_organization
+          - name: maximun_monetary_value
+          - name: desired_amount
+          - name: application_date
+          - name: deadline
+          - name: status
+          
+      - name: kind_of_organization
+        description: ""
+        columns:
+          - name: id
+          - name: name
+
+      - name: phone_number
+        description: ""
+        columns:
+          - name: id
+          - name: employee_id
+          - name: phone
+          - name: description
+
+      - name: registration_body
+        description: ""
+        columns:
+          - name: id
+          - name: name
+          - name: country_code
+          - name: price
+
+      - name: role
+        description: ""
+        columns:
+          - name: id
+          - name: name
+
+      - name: shareholder
+        description: ""
+        columns:
+          - name: id
+          - name: first_name
+          - name: last_name
+          - name: country_code
+          - name: place_of_birth
+          - name: mothers_maiden_name
+          - name: fatheers_first_name
+          - name: personal_telephone
+          - name: national_insurance_number
+          - name: passport_number
+
+      - name: staff
+        description: ""
+        columns:
+          - name: sn
+          - name: staff_id
+          - name: department_id
