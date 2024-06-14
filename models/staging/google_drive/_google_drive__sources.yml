@@ -95,20 +95,6 @@ sources:
           - name: building
           - name: address
 
-      - name: employee
-        description: ""
-        columns:
-          - name: id
-          - name: first_name
-          - name: middle_name
-          - name: first_name
-          - name: gender
-          - name: date_of_birth
-          - name: company_id
-          - name: employee_rol
-          - name: date_started
-          - name: email_address
-
       - name: film
         description: ""
         columns:
@@ -116,32 +102,12 @@ sources:
           - name: title
           - name: release_year
           - name: first_released
-
-      - name: grant_request
-        description: ""
-        columns:
-          - name: id
-          - name: title
-          - name: funding_organization
-          - name: maximun_monetary_value
-          - name: desired_amount
-          - name: application_date
-          - name: deadline
-          - name: status
           
       - name: kind_of_organization
         description: ""
         columns:
           - name: id
           - name: name
-
-      - name: phone_number
-        description: ""
-        columns:
-          - name: id
-          - name: employee_id
-          - name: phone
-          - name: description
 
       - name: registration_body
         description: ""
@@ -150,12 +116,6 @@ sources:
           - name: name
           - name: country_code
           - name: price
-
-      - name: role
-        description: ""
-        columns:
-          - name: id
-          - name: name
 
       - name: shareholder
         description: ""

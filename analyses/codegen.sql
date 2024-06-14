@@ -1,3 +1,3 @@
 {{ codegen.generate_model_yaml(
-    model_names=['']
+    model_names=['dim__dates']
 ) }}

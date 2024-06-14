@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: base_google_drive__employee
+    description: ""
+    columns:
+      - name: id_employee
+        data_type: varchar
+        description: ""
+
+      - name: first_name
+        data_type: varchar
+        description: ""
+
+      - name: middle_name
+        data_type: varchar
+        description: ""
+
+      - name: last_name
+        data_type: varchar
+        description: ""
+
+      - name: gender
+        data_type: varchar
+        description: ""
+
+      - name: date_of_birth
+        data_type: date
+        description: ""
+
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: name_role
+        data_type: varchar
+        description: ""
+
+      - name: date_started
+        data_type: date
+        description: ""
+
+      - name: email_address
+        data_type: varchar
+        description: ""
+
+  - name: base_google_drive__grant_request
+    description: ""
+    columns:
+      - name: id_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: title_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: funding_organization
+        data_type: varchar
+        description: ""
+
+      - name: maximum_monetary_value
+        data_type: float
+        description: ""
+
+      - name: desired_amount
+        data_type: float
+        description: ""
+
+      - name: date_application
+        data_type: date
+        description: ""
+
+      - name: deadline
+        data_type: date
+        description: ""
+
+      - name: status
+        data_type: varchar
+        description: ""
+
+  - name: base_google_drive__phone_number
+    description: ""
+    columns:
+      - name: id_phone_number
+        data_type: varchar
+        description: ""
+
+      - name: id_employee
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: description
+        data_type: varchar
+        description: ""
+
+  - name: base_google_drive__role
+    description: ""
+    columns:
+      - name: id_role
+        data_type: varchar
+        description: ""
+
+      - name: name_role
+        data_type: varchar
+        description: ""

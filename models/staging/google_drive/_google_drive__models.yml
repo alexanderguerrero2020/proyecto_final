@@ -1,0 +1,444 @@
+version: 2
+
+models:
+  - name: stg_google_drive__city
+    description: ""
+    columns:
+      - name: id_city
+        data_type: varchar
+        description: ""
+
+      - name: name_city
+        data_type: varchar
+        description: ""
+
+      - name: country_code
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__company
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: name_company
+        data_type: varchar
+        description: ""
+
+      - name: address
+        data_type: varchar
+        description: ""
+
+      - name: code_zip
+        data_type: varchar
+        description: ""
+
+      - name: city_id
+        data_type: varchar
+        description: ""
+
+      - name: code_country
+        data_type: varchar
+        description: ""
+
+      - name: id_kind_of_organization
+        data_type: varchar
+        description: ""
+
+      - name: total_asset
+        data_type: float
+        description: ""
+
+      - name: total_liability
+        data_type: float
+        description: ""
+
+      - name: id_registration_body
+        data_type: varchar
+        description: ""
+
+      - name: date_registration
+        data_type: date
+        description: ""
+
+  - name: stg_google_drive__company_film
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: code_film_movie
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__company_grant
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: id_grant
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__company_shareholder
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: id_shareholder
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__country
+    description: ""
+    columns:
+      - name: code_country
+        data_type: varchar
+        description: ""
+
+      - name: name_country
+        data_type: varchar
+        description: ""
+
+      - name: code_isd
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__crew
+    description: ""
+    columns:
+      - name: sn
+        data_type: varchar
+        description: ""
+
+      - name: id_crew
+        data_type: varchar
+        description: ""
+
+      - name: id_role
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__crew_info
+    description: ""
+    columns:
+      - name: id_crew
+        data_type: varchar
+        description: ""
+
+      - name: code_movie
+        data_type: varchar
+        description: ""
+
+      - name: id_role
+        data_type: varchar
+        description: ""
+
+      - name: rate_hourly
+        data_type: float
+        description: ""
+
+      - name: bonus_daily
+        data_type: float
+        description: ""
+
+      - name: bonus_scene
+        data_type: float
+        description: ""
+
+      - name: bonus_completion
+        data_type: float
+        description: ""
+
+      - name: contractual_incentive
+        data_type: float
+        description: ""
+
+  - name: stg_google_drive__department
+    description: ""
+    columns:
+      - name: id_department
+        data_type: varchar
+        description: ""
+
+      - name: name_department
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__department_address
+    description: ""
+    columns:
+      - name: id_department
+        data_type: varchar
+        description: ""
+
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: building
+        data_type: varchar
+        description: ""
+
+      - name: address
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__employee
+    description: ""
+    columns:
+      - name: id_employee
+        data_type: varchar
+        description: ""
+
+      - name: first_name
+        data_type: varchar
+        description: ""
+
+      - name: middle_name
+        data_type: varchar
+        description: ""
+
+      - name: last_name
+        data_type: varchar
+        description: ""
+
+      - name: id_gender
+        data_type: varchar
+        description: ""
+
+      - name: date_of_birth
+        data_type: date
+        description: ""
+
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: id_name_role
+        data_type: varchar
+        description: ""
+
+      - name: date_started
+        data_type: date
+        description: ""
+
+      - name: email_address
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__employee_gender
+    description: ""
+    columns:
+      - name: gender
+        data_type: varchar
+        description: ""
+
+      - name: id_gender
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__film
+    description: ""
+    columns:
+      - name: code_movie
+        data_type: varchar
+        description: ""
+
+      - name: title_film
+        data_type: varchar
+        description: ""
+
+      - name: release_year
+        data_type: number
+        description: ""
+
+      - name: first_released
+        data_type: date
+        description: ""
+
+  - name: stg_google_drive__grant_request
+    description: ""
+    columns:
+      - name: id_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: title_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: funding_organization
+        data_type: varchar
+        description: ""
+
+      - name: maximum_monetary_value
+        data_type: float
+        description: ""
+
+      - name: desired_amount
+        data_type: float
+        description: ""
+
+      - name: date_application
+        data_type: date
+        description: ""
+
+      - name: deadline
+        data_type: date
+        description: ""
+
+      - name: id_status
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__grant_request_status
+    description: ""
+    columns:
+      - name: status
+        data_type: varchar
+        description: ""
+
+      - name: id_status
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__kind_of_organization
+    description: ""
+    columns:
+      - name: id_kind_of_organization
+        data_type: varchar
+        description: ""
+
+      - name: name_kind_of_organization
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__phone_number
+    description: ""
+    columns:
+      - name: id_phone_number
+        data_type: varchar
+        description: ""
+
+      - name: id_employee
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: id_description
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__phone_number_description
+    description: ""
+    columns:
+      - name: description
+        data_type: varchar
+        description: ""
+
+      - name: id_description
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__registration_body
+    description: ""
+    columns:
+      - name: id_registration_body
+        data_type: varchar
+        description: ""
+
+      - name: name_registration_body
+        data_type: varchar
+        description: ""
+
+      - name: code_country
+        data_type: varchar
+        description: ""
+
+      - name: price
+        data_type: float
+        description: ""
+
+  - name: stg_google_drive__role
+    description: ""
+    columns:
+      - name: id_role
+        data_type: varchar
+        description: ""
+
+      - name: id_name_role
+        data_type: varchar
+        description: ""
+
+      - name: name_role
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__shareholder
+    description: ""
+    columns:
+      - name: id_shareholder
+        data_type: varchar
+        description: ""
+
+      - name: first_name
+        data_type: varchar
+        description: ""
+
+      - name: last_name
+        data_type: varchar
+        description: ""
+
+      - name: code_country
+        data_type: varchar
+        description: ""
+
+      - name: place_of_birth
+        data_type: varchar
+        description: ""
+
+      - name: mothers_maiden_name
+        data_type: varchar
+        description: ""
+
+      - name: fathers_first_name
+        data_type: varchar
+        description: ""
+
+      - name: personal_telephone
+        data_type: varchar
+        description: ""
+
+      - name: national_insurance_number
+        data_type: varchar
+        description: ""
+
+      - name: passport_number
+        data_type: varchar
+        description: ""
+
+  - name: stg_google_drive__staff
+    description: ""
+    columns:
+      - name: sn
+        data_type: varchar
+        description: ""
+
+      - name: id_staff
+        data_type: varchar
+        description: ""
+
+      - name: id_department
+        data_type: varchar
+        description: ""
