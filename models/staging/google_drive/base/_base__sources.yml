@@ -54,3 +54,12 @@ sources:
           - name: employee_id
           - name: phone
           - name: description
+
+      - name: staff_salary
+        description: ""
+        columns:
+          - name: sn
+          - name: staff_id
+          - name: working_hours
+          - name: job_level
+          - name: salary

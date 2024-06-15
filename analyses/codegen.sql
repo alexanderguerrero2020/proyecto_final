@@ -1,3 +1,3 @@
 {{ codegen.generate_model_yaml(
-    model_names=['dim__dates']
+    model_names=['fct__performance_department' ]
 ) }}

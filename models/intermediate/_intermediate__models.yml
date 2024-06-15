@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: int__company_staff
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: total_staff
+        data_type: number
+        description: ""
+
+      - name: total_salary
+        data_type: float
+        description: ""
+
+      - name: average_salary
+        data_type: float
+        description: ""
+
+  - name: int__staff_salary
+    description: ""
+    columns:
+      - name: id_department
+        data_type: varchar
+        description: ""
+
+      - name: total_salary_paid
+        data_type: float
+        description: ""
+
+      - name: average_salary
+        data_type: float
+        description: ""
+
+      - name: number_of_employees
+        data_type: number
+        description: ""
+
+      - name: job_level
+        data_type: varchar
+        description: ""
+
+      - name: working_hours
+        data_type: varchar
+        description: ""

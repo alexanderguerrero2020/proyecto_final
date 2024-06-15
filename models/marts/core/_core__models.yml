@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_google_drive__city
+  - name: dim__city
     description: ""
     columns:
       - name: id_city
@@ -16,7 +16,7 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__company
+  - name: dim__company
     description: ""
     columns:
       - name: id_company
@@ -63,40 +63,7 @@ models:
         data_type: date
         description: ""
 
-  - name: stg_google_drive__company_film
-    description: ""
-    columns:
-      - name: id_company
-        data_type: varchar
-        description: ""
-
-      - name: code_film_movie
-        data_type: varchar
-        description: ""
-
-  - name: stg_google_drive__company_grant
-    description: ""
-    columns:
-      - name: id_company
-        data_type: varchar
-        description: ""
-
-      - name: id_grant
-        data_type: varchar
-        description: ""
-
-  - name: stg_google_drive__company_shareholder
-    description: ""
-    columns:
-      - name: id_company
-        data_type: varchar
-        description: ""
-
-      - name: id_shareholder
-        data_type: varchar
-        description: ""
-
-  - name: stg_google_drive__country
+  - name: dim__country
     description: ""
     columns:
       - name: code_country
@@ -111,13 +78,9 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__crew
+  - name: dim__crew
     description: ""
     columns:
-      - name: sn
-        data_type: varchar
-        description: ""
-
       - name: id_crew
         data_type: varchar
         description: ""
@@ -126,42 +89,154 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__crew_info
+  - name: dim__dates
     description: ""
     columns:
-      - name: id_crew
+      - name: date_day
+        data_type: date
+        description: ""
+
+      - name: prior_date_day
+        data_type: date
+        description: ""
+
+      - name: next_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_date_day
+        data_type: date
+        description: ""
+
+      - name: prior_year_over_year_date_day
+        data_type: date
+        description: ""
+
+      - name: day_of_week
+        data_type: number
+        description: ""
+
+      - name: day_of_week_iso
+        data_type: number
+        description: ""
+
+      - name: day_of_week_name
         data_type: varchar
         description: ""
 
-      - name: code_movie
+      - name: day_of_week_name_short
         data_type: varchar
         description: ""
 
-      - name: id_role
+      - name: day_of_month
+        data_type: number
+        description: ""
+
+      - name: day_of_year
+        data_type: number
+        description: ""
+
+      - name: week_start_date
+        data_type: date
+        description: ""
+
+      - name: week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_week_end_date
+        data_type: date
+        description: ""
+
+      - name: week_of_year
+        data_type: number
+        description: ""
+
+      - name: iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_start_date
+        data_type: date
+        description: ""
+
+      - name: prior_year_iso_week_end_date
+        data_type: date
+        description: ""
+
+      - name: iso_week_of_year
+        data_type: number
+        description: ""
+
+      - name: prior_year_week_of_year
+        data_type: number
+        description: ""
+
+      - name: prior_year_iso_week_of_year
+        data_type: number
+        description: ""
+
+      - name: month_of_year
+        data_type: number
+        description: ""
+
+      - name: month_name
         data_type: varchar
         description: ""
 
-      - name: rate_hourly
-        data_type: float
+      - name: month_name_short
+        data_type: varchar
         description: ""
 
-      - name: bonus_daily
-        data_type: float
+      - name: month_start_date
+        data_type: date
         description: ""
 
-      - name: bonus_scene
-        data_type: float
+      - name: month_end_date
+        data_type: date
         description: ""
 
-      - name: bonus_completion
-        data_type: float
+      - name: prior_year_month_start_date
+        data_type: date
         description: ""
 
-      - name: contractual_incentive
-        data_type: float
+      - name: prior_year_month_end_date
+        data_type: date
         description: ""
 
-  - name: stg_google_drive__department
+      - name: quarter_of_year
+        data_type: number
+        description: ""
+
+      - name: quarter_start_date
+        data_type: date
+        description: ""
+
+      - name: quarter_end_date
+        data_type: date
+        description: ""
+
+      - name: year_number
+        data_type: number
+        description: ""
+
+      - name: year_start_date
+        data_type: date
+        description: ""
+
+      - name: year_end_date
+        data_type: date
+        description: ""
+
+  - name: dim__department
     description: ""
     columns:
       - name: id_department
@@ -172,7 +247,7 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__department_address
+  - name: dim__department_address
     description: ""
     columns:
       - name: id_department
@@ -191,7 +266,7 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__employee
+  - name: dim__employee
     description: ""
     columns:
       - name: id_employee
@@ -234,18 +309,18 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__employee_gender
+  - name: dim__employee_gender
     description: ""
     columns:
-      - name: gender
-        data_type: varchar
-        description: ""
-
       - name: id_gender
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__film
+      - name: gender
+        data_type: varchar
+        description: ""
+
+  - name: dim__film
     description: ""
     columns:
       - name: code_movie
@@ -264,53 +339,18 @@ models:
         data_type: date
         description: ""
 
-  - name: stg_google_drive__grant_request
+  - name: dim__grant_request_status
     description: ""
     columns:
-      - name: id_grant_request
-        data_type: varchar
-        description: ""
-
-      - name: title_grant_request
-        data_type: varchar
-        description: ""
-
-      - name: funding_organization
-        data_type: varchar
-        description: ""
-
-      - name: maximum_monetary_value
-        data_type: float
-        description: ""
-
-      - name: desired_amount
-        data_type: float
-        description: ""
-
-      - name: date_application
-        data_type: date
-        description: ""
-
-      - name: deadline
-        data_type: date
-        description: ""
-
       - name: id_status
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__grant_request_status
-    description: ""
-    columns:
       - name: status
         data_type: varchar
         description: ""
 
-      - name: id_status
-        data_type: varchar
-        description: ""
-
-  - name: stg_google_drive__kind_of_organization
+  - name: dim__kind_of_organization
     description: ""
     columns:
       - name: id_kind_of_organization
@@ -321,7 +361,7 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__phone_number
+  - name: dim__phone_number
     description: ""
     columns:
       - name: id_phone_number
@@ -340,18 +380,18 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__phone_number_description
+  - name: dim__phone_number_description
     description: ""
     columns:
-      - name: description
-        data_type: varchar
-        description: ""
-
       - name: id_description
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__registration_body
+      - name: description
+        data_type: varchar
+        description: ""
+
+  - name: dim__registration_body
     description: ""
     columns:
       - name: id_registration_body
@@ -370,7 +410,7 @@ models:
         data_type: float
         description: ""
 
-  - name: stg_google_drive__role
+  - name: dim__role
     description: ""
     columns:
       - name: id_role
@@ -385,7 +425,7 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__shareholder
+  - name: dim__shareholder
     description: ""
     columns:
       - name: id_shareholder
@@ -428,13 +468,9 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__staff
+  - name: dim__staff
     description: ""
     columns:
-      - name: sn
-        data_type: varchar
-        description: ""
-
       - name: id_staff
         data_type: varchar
         description: ""
@@ -443,7 +479,132 @@ models:
         data_type: varchar
         description: ""
 
-  - name: stg_google_drive__staff_salary
+  - name: dim__staff_salary_job_level
+    description: ""
+    columns:
+      - name: id_job_level
+        data_type: varchar
+        description: ""
+
+      - name: job_level
+        data_type: varchar
+        description: ""
+
+  - name: dim__staff_salary_working_hours
+    description: ""
+    columns:
+      - name: id_working_hours
+        data_type: varchar
+        description: ""
+
+      - name: working_hours
+        data_type: varchar
+        description: ""
+
+  - name: fct__company_film
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: code_film_movie
+        data_type: varchar
+        description: ""
+
+  - name: fct__company_grant
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: id_grant
+        data_type: varchar
+        description: ""
+
+  - name: fct__company_shareholder
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: id_shareholder
+        data_type: varchar
+        description: ""
+
+  - name: fct__crew_info
+    description: ""
+    columns:
+      - name: id_crew
+        data_type: varchar
+        description: ""
+
+      - name: code_movie
+        data_type: varchar
+        description: ""
+
+      - name: id_role
+        data_type: varchar
+        description: ""
+
+      - name: rate_hourly
+        data_type: float
+        description: ""
+
+      - name: bonus_daily
+        data_type: float
+        description: ""
+
+      - name: bonus_scene
+        data_type: float
+        description: ""
+
+      - name: bonus_completion
+        data_type: float
+        description: ""
+
+      - name: contractual_incentive
+        data_type: float
+        description: ""
+
+  - name: fct__grant_request
+    description: ""
+    columns:
+      - name: id_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: title_grant_request
+        data_type: varchar
+        description: ""
+
+      - name: funding_organization
+        data_type: varchar
+        description: ""
+
+      - name: maximum_monetary_value
+        data_type: float
+        description: ""
+
+      - name: desired_amount
+        data_type: float
+        description: ""
+
+      - name: date_application
+        data_type: date
+        description: ""
+
+      - name: deadline
+        data_type: date
+        description: ""
+
+      - name: id_status
+        data_type: varchar
+        description: ""
+
+  - name: fct__staff_salary
     description: ""
     columns:
       - name: sn
@@ -464,26 +625,4 @@ models:
 
       - name: salary
         data_type: float
-        description: ""
-
-  - name: stg_google_drive__staff_salary_job_level
-    description: ""
-    columns:
-      - name: id_job_level
-        data_type: varchar
-        description: ""
-
-      - name: job_level
-        data_type: varchar
-        description: ""
-
-  - name: stg_google_drive__staff_salary_working_hours
-    description: ""
-    columns:
-      - name: id_working_hours
-        data_type: varchar
-        description: ""
-
-      - name: working_hours
-        data_type: varchar
         description: ""
