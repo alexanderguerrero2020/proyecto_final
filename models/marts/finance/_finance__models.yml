@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: fct__company_staffing
+    description: ""
+    columns:
+      - name: id_company
+        data_type: varchar
+        description: ""
+
+      - name: total_staff
+        data_type: number
+        description: ""
+
+      - name: total_salary
+        data_type: float
+        description: ""
+
+      - name: average_salary
+        data_type: float
+        description: ""

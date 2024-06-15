@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: fct__performance_department
+    description: ""
+    columns:
+      - name: id_department
+        data_type: varchar
+        description: ""
+
+      - name: total_salary_paid
+        data_type: float
+        description: ""
+
+      - name: average_salary
+        data_type: float
+        description: ""
+
+      - name: number_of_employees
+        data_type: number
+        description: ""
+
+      - name: job_level
+        data_type: varchar
+        description: ""
+
+      - name: working_hours
+        data_type: varchar
+        description: ""
