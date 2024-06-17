@@ -12,7 +12,7 @@ renamed as (
         id_department,
         id_company,
         building,
-        address
+        address_department
 
     from source
 

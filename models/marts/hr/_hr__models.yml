@@ -20,10 +20,10 @@ models:
         data_type: number
         description: ""
 
-      - name: job_level
+      - name: id_job_level
         data_type: varchar
         description: ""
 
-      - name: working_hours
+      - name: id_working_hours
         data_type: varchar
         description: ""

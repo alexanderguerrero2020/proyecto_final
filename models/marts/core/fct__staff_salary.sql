@@ -11,8 +11,8 @@ renamed as (
     select
         sn,
         id_staff,
-        working_hours,
-        job_level,
+        id_working_hours,
+        id_job_level,
         salary
 
     from source

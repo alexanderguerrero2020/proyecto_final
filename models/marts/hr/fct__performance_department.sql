@@ -14,8 +14,8 @@ renamed as (
         total_salary_paid,
         average_salary,
         number_of_employees,
-        job_level,
-        working_hours
+        id_job_level,
+        id_working_hours
 
     from source
 

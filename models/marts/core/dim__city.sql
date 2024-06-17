@@ -11,7 +11,7 @@ renamed as (
     select
         id_city,
         name_city,
-        country_code
+        code_country
 
     from source
 

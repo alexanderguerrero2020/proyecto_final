@@ -12,7 +12,7 @@ renamed as (
         department_id::varchar(256) as id_department,
         company_id::varchar(256) as id_company,
         building::varchar(256) as building,
-        address::varchar(256) as address
+        address::varchar(256) as address_department
 
     from source
 

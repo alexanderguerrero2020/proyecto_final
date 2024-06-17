@@ -5,44 +5,44 @@ models:
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('company') }}"
 
       - name: total_staff
         data_type: number
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: total_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: average_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
   - name: int__staff_salary
     description: ""
     columns:
       - name: id_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('department') }}"
 
       - name: total_salary_paid
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: average_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: number_of_employees
         data_type: number
-        description: ""
+        description: "{{ doc('employee') }}"
 
       - name: job_level
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: working_hours
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
