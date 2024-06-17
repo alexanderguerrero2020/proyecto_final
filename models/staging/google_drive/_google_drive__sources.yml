@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: google_drive # name of the source
     schema: google_drive # this is the schema our raw data lives in
-    database: ALUMNO9_DEV_BRONZE_DB # this is the name of our database
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB" # this is the name of our database
 
     quoting:
       database: false
@@ -19,19 +19,44 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
+              - not_null
           - name: name
           - name: country_code
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'country')
+                  field: code
 
       - name: company
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: name
           - name: address
           - name: zip_code
           - name: city_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'city')
+                  field: id
           - name: country_code
-          - name: kind_of_organization
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'country')
+                  field: code
+          - name: kind_of_organization_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'kind_of_organization')
+                  field: id
           - name: total_asset
           - name: total_liability
           - name: registration_body_id
@@ -41,40 +66,97 @@ sources:
         description: ""
         columns:
           - name: company_id
+            tests:
+              - relationships:
+                  to: source('google_drive', 'company')
+                  field: id
           - name: film_movie_code
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'film')
+                  field: movie_code
 
       - name: company_grant
         description: ""
         columns:
           - name: company_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'company')
+                  field: id
           - name: grant_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'grant_request')
+                  field: id
 
       - name: company_shareholder
         description: ""
         columns:
           - name: company_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'company')
+                  field: id
           - name: shareholder_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'shareholder')
+                  field: id
 
       - name: country
         description: ""
         columns:
           - name: code
+            tests:
+              - unique
           - name: name
           - name: isd_code
+            tests:
+              - not_null
 
       - name: crew
         description: ""
         columns:
           - name: sn
+            tests:
+              - unique
           - name: crew_id
+            tests:
+              - unique
           - name: role_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'role')
+                  field: id
 
       - name: crew_info
         description: ""
         columns:
           - name: crew_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'crew')
+                  field: crew_id
           - name: movie_code
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'film')
+                  field: movie_code
           - name: role_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'role')
+                  field: id
           - name: hourly_rate
           - name: daily_bonus
           - name: scene_bonus
@@ -85,13 +167,25 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: name
 
       - name: department_address
         description: ""
         columns:
           - name: department_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'department')
+                  field: id
           - name: company_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'company')
+                  field: id
           - name: building
           - name: address
 
@@ -99,6 +193,8 @@ sources:
         description: ""
         columns:
           - name: movie_code
+            tests:
+              - unique
           - name: title
           - name: release_year
           - name: first_released
@@ -107,23 +203,39 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: name
 
       - name: registration_body
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: name
           - name: country_code
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'country')
+                  field: code
           - name: price
 
       - name: shareholder
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: first_name
           - name: last_name
           - name: country_code
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'country')
+                  field: code
           - name: place_of_birth
           - name: mothers_maiden_name
           - name: fatheers_first_name
@@ -135,5 +247,14 @@ sources:
         description: ""
         columns:
           - name: sn
+            tests:
+              - unique
           - name: staff_id
+            tests:
+              - unique
           - name: department_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'department')
+                  field: id

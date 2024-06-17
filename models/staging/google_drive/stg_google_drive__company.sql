@@ -13,7 +13,7 @@ renamed as (
         name::varchar(256) as name_company,
         address::varchar(256) as address,
         zip_code::varchar(256) as code_zip,
-        city_id::varchar(256) as city_id,
+        city_id::varchar(256) as id_city,
         country_code::varchar(256) as code_country,
         kind_of_organization_id::varchar(256) as id_kind_of_organization,
         total_asset::float as total_asset,

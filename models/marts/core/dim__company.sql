@@ -13,7 +13,7 @@ renamed as (
         name_company,
         address,
         code_zip,
-        city_id,
+        id_city,
         code_country,
         id_kind_of_organization,
         total_asset,

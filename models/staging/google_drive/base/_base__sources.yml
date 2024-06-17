@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: google_drive # name of the source
     schema: google_drive # this is the schema our raw data lives in
-    database: ALUMNO9_DEV_BRONZE_DB # this is the name of our database
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB" # this is the name of our database
 
     quoting:
       database: false
@@ -19,13 +19,22 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: first_name
           - name: middle_name
           - name: first_name
           - name: gender
           - name: date_of_birth
           - name: company_id
-          - name: employee_rol
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'company')
+                  field: id
+          - name: employee_role
+            tests:
+              - not_null
           - name: date_started
           - name: email_address
 
@@ -33,6 +42,8 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: title
           - name: funding_organization
           - name: maximun_monetary_value
@@ -45,13 +56,26 @@ sources:
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
+              - not_null
           - name: name
+            tests:
+              - unique
+              - not_null
 
       - name: phone_number
         description: ""
         columns:
           - name: id
+            tests:
+              - unique
           - name: employee_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'employee')
+                  field: id
           - name: phone
           - name: description
 
@@ -59,7 +83,14 @@ sources:
         description: ""
         columns:
           - name: sn
+            tests:
+              - unique
           - name: staff_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'staff')
+                  field: staff_id
           - name: working_hours
           - name: job_level
           - name: salary

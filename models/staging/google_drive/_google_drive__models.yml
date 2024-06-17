@@ -5,485 +5,686 @@ models:
     description: ""
     columns:
       - name: id_city
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('city') }}"
 
       - name: name_city
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('city') }}"
 
-      - name: country_code
-        data_type: varchar
-        description: ""
+      - name: code_country
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__country')
+              field: code_country
+        description: "{{ doc('country') }}"
 
   - name: stg_google_drive__company
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('company') }}"
 
       - name: name_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('company') }}"
 
       - name: address
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('company') }}"
 
       - name: code_zip
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('company') }}"
 
-      - name: city_id
-        data_type: varchar
-        description: ""
+      - name: id_city
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__city')
+              field: id_city
+        description: "{{ doc('city') }}"
 
       - name: code_country
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__country')
+              field: code_country
+        description: "{{ doc('country') }}"
 
       - name: id_kind_of_organization
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__kind_of_organization')
+              field: id_kind_of_organization
+        description: "{{ doc('kind_of_organization') }}"
 
       - name: total_asset
         data_type: float
-        description: ""
+        description: "{{ doc('company') }}"
 
       - name: total_liability
         data_type: float
-        description: ""
+        description: "{{ doc('company') }}"
 
       - name: id_registration_body
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__registration_body')
+              field: id_registration_body
+        description: "{{ doc('registration_body') }}"
 
       - name: date_registration
         data_type: date
-        description: ""
+        description: "{{ doc('company') }}"
 
   - name: stg_google_drive__company_film
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: code_film_movie
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__film')
+              field: code_movie
+        description: "{{ doc('film') }}"
 
   - name: stg_google_drive__company_grant
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: id_grant
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__grant_request')
+              field: id_grant_request
+        description: "{{ doc('grant_request') }}"
 
   - name: stg_google_drive__company_shareholder
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: id_shareholder
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__shareholder')
+              field: id_shareholder
+        description: "{{ doc('shareholder') }}"
 
   - name: stg_google_drive__country
     description: ""
     columns:
       - name: code_country
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('country') }}"
 
       - name: name_country
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('country') }}"
 
       - name: code_isd
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('country') }}"
 
   - name: stg_google_drive__crew
     description: ""
     columns:
       - name: sn
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('crew') }}"
 
       - name: id_crew
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('crew') }}"
 
       - name: id_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__role')
+              field: id_role
+        description: "{{ doc('role') }}"
 
   - name: stg_google_drive__crew_info
     description: ""
     columns:
       - name: id_crew
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__crew')
+              field: id_crew
+        description: "{{ doc('crew') }}"
 
       - name: code_movie
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__film')
+              field: code_movie
+        description: "{{ doc('film') }}"
 
       - name: id_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__role')
+              field: id_role
+        description: "{{ doc('role') }}"
 
       - name: rate_hourly
         data_type: float
-        description: ""
+        description: "{{ doc('crew') }}"
 
       - name: bonus_daily
         data_type: float
-        description: ""
+        description: "{{ doc('crew') }}"
 
       - name: bonus_scene
         data_type: float
-        description: ""
+        description: "{{ doc('crew') }}"
 
       - name: bonus_completion
         data_type: float
-        description: ""
+        description: "{{ doc('crew') }}"
 
       - name: contractual_incentive
         data_type: float
-        description: ""
+        description: "{{ doc('crew') }}"
 
   - name: stg_google_drive__department
     description: ""
     columns:
       - name: id_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('department') }}"
 
       - name: name_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('department') }}"
 
   - name: stg_google_drive__department_address
     description: ""
     columns:
       - name: id_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__department')
+              field: id_department
+        description: "{{ doc('department') }}"
 
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: building
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('department') }}"
 
-      - name: address
-        data_type: varchar
-        description: ""
+      - name: address_department
+        data_type: varchar(256)
+        description: "{{ doc('department') }}"
 
   - name: stg_google_drive__employee
     description: ""
     columns:
       - name: id_employee
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('base_google_drive__employee')
+              field: id_employee
+        description: "{{ doc('employee') }}"
 
       - name: first_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('employee') }}"
 
       - name: middle_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('employee') }}"
 
       - name: last_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('employee') }}"
 
       - name: id_gender
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__employee_gender')
+              field: id_gender
+        description: "{{ doc('employee') }}"
 
       - name: date_of_birth
         data_type: date
-        description: ""
+        description: "{{ doc('employee') }}"
 
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: id_name_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+        description: "{{ doc('role') }}"
 
       - name: date_started
         data_type: date
-        description: ""
+        description: "{{ doc('employee') }}"
 
       - name: email_address
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('employee') }}"
 
   - name: stg_google_drive__employee_gender
     description: ""
     columns:
       - name: gender
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('base_google_drive__employee')
+              field: gender
+        description: "{{ doc('employee') }}"
 
       - name: id_gender
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique 
+          - not_null
+        description: "{{ doc('employee') }}"
 
   - name: stg_google_drive__film
     description: ""
     columns:
       - name: code_movie
-        data_type: varchar
-        description: ""
+        tests:
+          - unique 
+          - not_null
+        data_type: varchar(256)
+        description: "{{ doc('film') }}"
 
       - name: title_film
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('film') }}"
 
       - name: release_year
         data_type: number
-        description: ""
+        description: "{{ doc('film') }}"
 
       - name: first_released
         data_type: date
-        description: ""
+        description: "{{ doc('film') }}"
 
   - name: stg_google_drive__grant_request
     description: ""
     columns:
       - name: id_grant_request
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique 
+          - not_null
+        description: "{{ doc('grant_request') }}"
 
       - name: title_grant_request
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('grant_request') }}"
 
       - name: funding_organization
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('grant_request') }}"
 
       - name: maximum_monetary_value
         data_type: float
-        description: ""
+        description: "{{ doc('grant_request') }}"
 
       - name: desired_amount
         data_type: float
-        description: ""
+        description: "{{ doc('grant_request') }}"
 
       - name: date_application
         data_type: date
-        description: ""
+        description: "{{ doc('grant_request') }}"
 
       - name: deadline
         data_type: date
-        description: ""
+        description: "{{ doc('grant_request') }}"
 
       - name: id_status
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__grant_request_status')
+              field: id_status
+        description: "{{ doc('grant_request') }}"
 
   - name: stg_google_drive__grant_request_status
     description: ""
     columns:
       - name: status
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('grant_request') }}"
 
       - name: id_status
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('grant_request') }}"
 
   - name: stg_google_drive__kind_of_organization
     description: ""
     columns:
       - name: id_kind_of_organization
-        data_type: varchar
-        description: ""
+        tests:
+          - unique
+          - not_null
+        data_type: varchar(256)
+        description: "{{ doc('kind_of_organization') }}"
 
       - name: name_kind_of_organization
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('kind_of_organization') }}"
 
   - name: stg_google_drive__phone_number
     description: ""
     columns:
       - name: id_phone_number
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('phone_number') }}"
 
       - name: id_employee
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__employee')
+              field: id_employee
+        description: "{{ doc('employee') }}"
 
       - name: phone
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('phone_number') }}"
 
       - name: id_description
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__phone_number_description')
+              field: id_description
+        description: "{{ doc('phone_number') }}"
 
   - name: stg_google_drive__phone_number_description
     description: ""
     columns:
       - name: description
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('phone_number') }}"
 
       - name: id_description
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('phone_number') }}"
 
   - name: stg_google_drive__registration_body
     description: ""
     columns:
       - name: id_registration_body
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - unique
+          - not_null
+        description: "{{ doc('registration_body') }}"
 
       - name: name_registration_body
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('registration_body') }}"
 
       - name: code_country
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__country')
+              field: code_country
+        description: "{{ doc('country') }}"
 
       - name: price
         data_type: float
-        description: ""
+        description: "{{ doc('registration_body') }}"
 
   - name: stg_google_drive__role
     description: ""
     columns:
       - name: id_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('role') }}"
 
       - name: id_name_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('role') }}"
 
       - name: name_role
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('role') }}"
 
   - name: stg_google_drive__shareholder
     description: ""
     columns:
       - name: id_shareholder
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: first_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: last_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: code_country
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__country')
+              field: code_country
+        description: "{{ doc('country') }}"
 
       - name: place_of_birth
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: mothers_maiden_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: fathers_first_name
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: personal_telephone
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: national_insurance_number
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
       - name: passport_number
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('shareholder') }}"
 
   - name: stg_google_drive__staff
     description: ""
     columns:
       - name: sn
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: id_staff
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: id_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__department')
+              field: id_department
+        description: "{{ doc('department') }}"
 
   - name: stg_google_drive__staff_salary
     description: ""
     columns:
       - name: sn
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: id_staff
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__staff')
+              field: id_staff
+        description: "{{ doc('staff') }}"
 
-      - name: working_hours
-        data_type: varchar
-        description: ""
+      - name: id_working_hours
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__staff_salary_working_hours')
+              field: id_working_hours
+        description: "{{ doc('staff') }}"
 
-      - name: job_level
-        data_type: varchar
-        description: ""
+      - name: id_job_level
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__staff_salary_job_level')
+              field: id_job_level
+        description: "{{ doc('staff') }}"
 
       - name: salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
   - name: stg_google_drive__staff_salary_job_level
     description: ""
     columns:
       - name: id_job_level
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: job_level
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('base_google_drive__staff_salary')
+              field: job_level
+        description: "{{ doc('staff') }}"
 
   - name: stg_google_drive__staff_salary_working_hours
     description: ""
     columns:
       - name: id_working_hours
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        description: "{{ doc('staff') }}"
 
       - name: working_hours
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('base_google_drive__staff_salary')
+              field: working_hours
+        description: "{{ doc('staff') }}"
