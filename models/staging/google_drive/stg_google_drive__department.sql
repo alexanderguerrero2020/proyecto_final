@@ -10,7 +10,8 @@ renamed as (
 
     select
         id::varchar(256) as id_department,
-        name::varchar(256) as name_department
+        name::varchar(256) as name_department,
+        {{ convert_to_utc('_fivetran_synced')}} as utc_date_load
 
     from source
 

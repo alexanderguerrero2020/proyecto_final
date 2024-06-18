@@ -2,8 +2,8 @@ with
 
 source as (
 
-    select * from {{ source('google_drive', 'employee') }}
-
+    select * from {{ ref('employee_snapshot')}}
+    WHERE dbt_valid_to IS NULL
 ),
 
 renamed as (
@@ -18,7 +18,10 @@ renamed as (
         company_id::varchar(256) as id_company,
         employee_role::varchar(256) as name_role,
         date_started::date as date_started,
-        email_address::varchar(256) as email_address
+        email_address::varchar(256) as email_address,
+        {{ convert_to_utc('_fivetran_synced')}} as utc_date_load,
+        {{ convert_to_utc('dbt_valid_from')}} as utc_dbt_valid_from,
+        {{ convert_to_utc('dbt_valid_to')}} as utc_dbt_valid_to
 
     from source
 

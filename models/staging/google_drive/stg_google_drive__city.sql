@@ -11,7 +11,8 @@ renamed as (
     select
         id::varchar(256) as id_city,
         name::varchar(256) as name_city,
-        country_code::varchar(256) as code_country
+        country_code::varchar(256) as code_country,
+        {{ convert_to_utc('_fivetran_synced')}} as utc_date_load
 
     from source
 

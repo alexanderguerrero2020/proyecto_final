@@ -3,6 +3,7 @@ with
 src_orders as (
 
     select * from {{ ref('base_google_drive__employee') }}
+    
 ),
 
 renamed as (
@@ -16,7 +17,8 @@ renamed as (
         id_company,
         {{ dbt_utils.generate_surrogate_key(["name_role"]) }} as id_name_role,
         date_started,
-        email_address
+        email_address,
+        utc_date_load
 
     from src_orders
     

@@ -16,7 +16,8 @@ renamed as (
         IFF(daily_bonus='NULL', '0', daily_bonus)::float as bonus_daily,
         IFF(scene_bonus='NULL', '0', scene_bonus)::float as bonus_scene,
         IFF(completion_bonus='NULL', '0', completion_bonus)::float as bonus_completion,
-        IFF(contractual_incentive='NULL', '0', contractual_incentive)::float as contractual_incentive
+        IFF(contractual_incentive='NULL', '0', contractual_incentive)::float as contractual_incentive,
+        {{ convert_to_utc('_fivetran_synced')}} as utc_date_load
 
     from source
 

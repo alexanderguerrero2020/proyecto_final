@@ -5,25 +5,40 @@ models:
     description: ""
     columns:
       - name: id_department
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__department')
+              field: id_department
+        description: "{{ doc('department') }}"
 
       - name: total_salary_paid
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: average_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: number_of_employees
         data_type: number
-        description: ""
+        description: "{{ doc('employee') }}"
 
       - name: id_job_level
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_job_level')
+              field: id_job_level
+        description: "{{ doc('staff') }}"
 
       - name: id_working_hours
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_working_hours')
+              field: id_working_hours
+        description: "{{ doc('staff') }}"

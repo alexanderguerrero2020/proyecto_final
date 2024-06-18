@@ -11,7 +11,7 @@ renamed as (
     select
         id_company,
         name_company,
-        address,
+        address_company,
         code_zip,
         id_city,
         code_country,
