@@ -12,7 +12,8 @@ renamed as (
         id_phone_number,
         id_employee,
         phone,
-        {{ dbt_utils.generate_surrogate_key(["description"]) }} as id_description
+        {{ dbt_utils.generate_surrogate_key(["description"]) }} as id_description,
+        utc_date_load
 
     from source
 

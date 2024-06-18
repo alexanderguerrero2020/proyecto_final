@@ -6,6 +6,11 @@ models:
     columns:
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: total_staff
@@ -25,6 +30,11 @@ models:
     columns:
       - name: id_department
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__department')
+              field: id_department
         description: "{{ doc('department') }}"
 
       - name: total_salary_paid
@@ -39,10 +49,20 @@ models:
         data_type: number
         description: "{{ doc('employee') }}"
 
-      - name: job_level
+      - name: id_job_level
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__staff_salary_job_level')
+              field: id_job_level
         description: "{{ doc('staff') }}"
 
-      - name: working_hours
+      - name: id_working_hours
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__staff_salary_working_hours')
+              field: id_working_hours
         description: "{{ doc('staff') }}"

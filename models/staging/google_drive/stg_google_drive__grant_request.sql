@@ -16,7 +16,8 @@ renamed as (
         desired_amount,
         date_application,
         deadline,
-        {{ dbt_utils.generate_surrogate_key(["status"]) }} as id_status
+        {{ dbt_utils.generate_surrogate_key(["status"]) }} as id_status,
+        utc_date_load
 
     from source
 

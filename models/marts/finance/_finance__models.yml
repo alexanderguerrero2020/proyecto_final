@@ -5,17 +5,22 @@ models:
     description: ""
     columns:
       - name: id_company
-        data_type: varchar
-        description: ""
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
+        description: "{{ doc('company') }}"
 
       - name: total_staff
         data_type: number
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: total_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"
 
       - name: average_salary
         data_type: float
-        description: ""
+        description: "{{ doc('staff') }}"

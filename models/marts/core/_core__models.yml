@@ -14,6 +14,11 @@ models:
 
       - name: code_country
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__country')
+              field: code_country
         description: "{{ doc('country') }}"
 
   - name: dim__company
@@ -21,13 +26,18 @@ models:
     columns:
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: name_company
         data_type: varchar(256)
         description: "{{ doc('company') }}"
 
-      - name: address
+      - name: address_company
         data_type: varchar(256)
         description: "{{ doc('company') }}"
 
@@ -37,15 +47,30 @@ models:
 
       - name: id_city
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__city')
+              field: id_city
         description: "{{ doc('city') }}"
 
       - name: code_country
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__country')
+              field: code_country
         description: "{{ doc('country') }}"
 
       - name: id_kind_of_organization
         data_type: varchar(256)
-        description: "{{ doc('company') }}"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__kind_of_organization')
+              field: id_kind_of_organization
+        description: "{{ doc('kind_of_organization') }}"
 
       - name: total_asset
         data_type: float
@@ -57,6 +82,11 @@ models:
 
       - name: id_registration_body
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__registration_body')
+              field: id_registration_body
         description: "{{ doc('registration_body') }}"
 
       - name: date_registration
@@ -87,6 +117,11 @@ models:
 
       - name: id_role
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__role')
+              field: id_role
         description: "{{ doc('role') }}"
 
   - name: dim__dates
@@ -252,10 +287,20 @@ models:
     columns:
       - name: id_department
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__department')
+              field: id_department
         description: "{{ doc('department') }}"
 
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: building
@@ -287,6 +332,11 @@ models:
 
       - name: id_gender
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__employee_gender')
+              field: id_gender
         description: "{{ doc('employee') }}"
 
       - name: date_of_birth
@@ -295,10 +345,17 @@ models:
 
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: id_name_role
         data_type: varchar(256)
+        tests:
+          - not_null
         description: "{{ doc('role') }}"
 
       - name: date_started
@@ -370,6 +427,11 @@ models:
 
       - name: id_employee
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__employee')
+              field: id_employee
         description: "{{ doc('employee') }}"
 
       - name: phone
@@ -378,6 +440,11 @@ models:
 
       - name: id_description
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__phone_number_description')
+              field: id_description
         description: "{{ doc('phone_number') }}"
 
   - name: dim__phone_number_description
@@ -404,6 +471,11 @@ models:
 
       - name: code_country
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__country')
+              field: code_country
         description: "{{ doc('country') }}"
 
       - name: price
@@ -442,6 +514,11 @@ models:
 
       - name: code_country
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__country')
+              field: code_country
         description: "{{ doc('country') }}"
 
       - name: place_of_birth
@@ -477,6 +554,11 @@ models:
 
       - name: id_department
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__department')
+              field: id_department
         description: "{{ doc('department') }}"
 
   - name: dim__staff_salary_job_level
@@ -506,10 +588,17 @@ models:
     columns:
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: code_film_movie
         data_type: varchar(256)
+        tests:
+          - not_null
         description: "{{ doc('film') }}"
 
   - name: fct__company_grant
@@ -517,10 +606,17 @@ models:
     columns:
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: id_grant
         data_type: varchar(256)
+        tests:
+          - not_null
         description: "{{ doc('grant_request') }}"
 
   - name: fct__company_shareholder
@@ -528,10 +624,20 @@ models:
     columns:
       - name: id_company
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
         description: "{{ doc('company') }}"
 
       - name: id_shareholder
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__shareholder')
+              field: id_shareholder
         description: "{{ doc('shareholder') }}"
 
   - name: fct__crew_info
@@ -539,14 +645,29 @@ models:
     columns:
       - name: id_crew
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__crew')
+              field: id_crew
         description: "{{ doc('crew') }}"
 
       - name: code_movie
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__film')
+              field: code_movie
         description: "{{ doc('film') }}"
 
       - name: id_role
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__role')
+              field: id_role
         description: "{{ doc('role') }}"
 
       - name: rate_hourly
@@ -574,6 +695,11 @@ models:
     columns:
       - name: id_grant_request
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_google_drive__grant_request')
+              field: id_grant_request
         description: "{{ doc('grant_request') }}"
 
       - name: title_grant_request
@@ -602,6 +728,11 @@ models:
 
       - name: id_status
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__grant_request_status')
+              field: id_status
         description: "{{ doc('grant_request') }}"
 
   - name: fct__staff_salary
@@ -613,14 +744,26 @@ models:
 
       - name: id_staff
         data_type: varchar(256)
+        tests:
+          - not_null
         description: "{{ doc('staff') }}"
 
       - name: id_working_hours
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_working_hours')
+              field: id_working_hours
         description: "{{ doc('staff') }}"
 
       - name: id_job_level
         data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_job_level')
+              field: id_job_level
         description: "{{ doc('staff') }}"
 
       - name: salary

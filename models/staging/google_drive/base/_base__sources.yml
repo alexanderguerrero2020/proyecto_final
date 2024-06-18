@@ -16,19 +16,32 @@ sources:
 
     tables:
       - name: employee
-        description: ""
+        description: "La tabla de empleados está diseñada para mantener registros detallados de las personas empleadas por varias empresas productoras de películas. Incluye información personal y profesional completa sobre cada empleado."
         columns:
           - name: id
             tests:
               - unique
+              - not_null
+              - dbt_utils.not_empty_string
           - name: first_name
+            tests:
+              - not_null
+              - dbt_utils.not_empty_string
           - name: middle_name
-          - name: first_name
+          - name: last_name
+            tests:
+              - not_null
           - name: gender
+            tests:
+              - accepted_values: 
+                  values: ["M", "F", "Other"]
           - name: date_of_birth
+            tests:
+              - not_null
           - name: company_id
             tests:
               - not_null
+              - dbt_utils.not_empty_string
               - relationships:
                   to: source('google_drive', 'company')
                   field: id
@@ -36,55 +49,98 @@ sources:
             tests:
               - not_null
           - name: date_started
+            tests:
+              - not_null
           - name: email_address
+            tests:
+              - not_null
+              - unique
+              # - valid_email
+          - name: _fivetran_synced
 
       - name: grant_request
-        description: ""
-        columns:
-          - name: id
-            tests:
-              - unique
-          - name: title
-          - name: funding_organization
-          - name: maximun_monetary_value
-          - name: desired_amount
-          - name: application_date
-          - name: deadline
-          - name: status
-
-      - name: role
-        description: ""
+        description: "La tabla Grant_request está diseñada específicamente para gestionar y realizar un seguimiento de las solicitudes de subvenciones asociadas con la producción cinematográfica. Esta tabla captura detalles esenciales sobre las solicitudes de subvención, incluidos los aspectos financieros, los plazos de solicitud y el estado de cada solicitud."
         columns:
           - name: id
             tests:
               - unique
               - not_null
+              - dbt_utils.not_empty_string
+          - name: title
+            tests:
+              - not_null
+          - name: funding_organization
+            tests:
+              - not_null
+              - dbt_utils.not_empty_string
+          - name: maximun_monetary_value
+            # tests:
+              # - not_null
+              # - positive_values
+          - name: desired_amount
+            tests:
+              - not_null
+              - dbt_utils.not_empty_string
+              # - positive_values
+          - name: application_date
+            tests:
+              - not_null
+          - name: deadline
+            tests:
+              - not_null
+          - name: status
+            tests:
+              - not_null
+              - accepted_values: 
+                  values: ["Pending", "Approved", "Denied"]
+          - name: _fivetran_synced
+
+      - name: role
+        description: "La tabla de roles está diseñada específicamente para definir varios roles que desempeñan los miembros del equipo en la industria de producción cinematográfica. Esta tabla es crucial para catalogar distintos roles dentro de los equipos de producción, como directores, actores, editores, productores y otros puestos especializados."
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+              - dbt_utils.not_empty_string
           - name: name
             tests:
               - unique
               - not_null
+          - name: _fivetran_synced
 
       - name: phone_number
-        description: ""
+        description: "La tabla número_teléfono está diseñada para almacenar números de teléfono asociados con los empleados, lo que proporciona una forma de registrar varios números de contacto por empleado junto con sus descripciones."
         columns:
           - name: id
             tests:
               - unique
+              - not_null
+              - dbt_utils.not_empty_string
           - name: employee_id
             tests:
               - not_null
+              - dbt_utils.not_empty_string
               - relationships:
                   to: source('google_drive', 'employee')
                   field: id
           - name: phone
+            tests:
+              - not_null
           - name: description
+            tests:
+              - dbt_utils.not_empty_string
+              - accepted_values: 
+                    values: ["Emergency", "Home", "Work", "Mobile"]
+          - name: _fivetran_synced
 
       - name: staff_salary
-        description: ""
+        description: "La tabla staff_salary está diseñada específicamente para gestionar los detalles salariales de los miembros del personal que no pertenecen al personal. Esta tabla contiene información sobre los salarios del personal, las horas de trabajo y los niveles laborales, lo que proporciona una visión completa de la compensación de los empleados dentro de la empresa."
         columns:
           - name: sn
             tests:
               - unique
+              - not_null
           - name: staff_id
             tests:
               - not_null
@@ -92,5 +148,17 @@ sources:
                   to: source('google_drive', 'staff')
                   field: staff_id
           - name: working_hours
+            tests:
+              - not_null
+              - accepted_values: 
+                  values: ["Full-time", "Part-time"]
           - name: job_level
+            tests:
+              - not_null
+              - accepted_values: 
+                  values: ["Entry", "Mid", "Senior", "Executive"]
           - name: salary
+            tests:
+              - not_null
+              # - positive_values
+          - name: _fivetran_synced

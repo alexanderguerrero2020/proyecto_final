@@ -18,7 +18,8 @@ renamed as (
         fathers_first_name::varchar(256) as fathers_first_name,
         personal_telephone::varchar(256) as personal_telephone,
         national_insurance_number::varchar(256) as national_insurance_number,
-        passport_number::varchar(256) as passport_number
+        passport_number::varchar(256) as passport_number,
+        {{ convert_to_utc('_fivetran_synced')}} as utc_date_load
 
     from source
 
