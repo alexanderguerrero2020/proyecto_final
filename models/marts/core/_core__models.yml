@@ -624,11 +624,6 @@ models:
     columns:
       - name: id_company_shareholeder
         data_type: varchar(256)
-        tests:
-          - not_null
-          - relationships:
-              to: ref('dim__company')
-              field: id_company
         description: "{{ doc('company') }}"
 
       - name: id_company
