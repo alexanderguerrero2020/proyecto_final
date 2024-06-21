@@ -1,52 +1,43 @@
 with 
 
-src_staff_salary_department as (
+src_int_staff_salary as (
 
     select 
-        A.id_staff,
-        B.id_department,
-        A.salary
-    from {{ ref('stg_google_drive__staff_salary') }} A
-    join {{ ref('stg_google_drive__staff') }} B
-    ON A.id_staff = B.id_staff
-
+        id_department,
+        total_salary_paid,
+        average_salary,
+        number_of_employees,
+        id_job_level,
+        id_working_hours
+    from {{ ref('int__staff_salary') }}
 ),
 
 src_staff_salary_department_address as (
 
     select 
-        A.id_department,
-        A.id_staff,
         B.id_company,
-        salary
-    from src_staff_salary_department A
-    join {{ ref('stg_google_drive__department_address') }} B
-    ON A.id_department = B.id_department
+        SUM(A.total_salary_paid)  AS total_salary_company,
+        SUM(A.number_of_employees) AS employees_per_company,
+        id_job_level,
+        id_working_hours
+    FROM src_int_staff_salary A
+    JOIN {{ ref('stg_google_drive__department_address') }} B
+        ON A.id_department = B.id_department
+    GROUP BY B.id_company, id_working_hours, id_job_level
+    
+    
 ),
 
-src_staff_salary_company as (
-
-    select 
-        A.id_company,
-        COUNT(id_staff) as total_staff,
-        SUM(salary) as total_salary,
-        AVG(salary) as average_salary
-    from src_staff_salary_department_address A
-    join {{ ref('stg_google_drive__company') }} B
-    ON A.id_company = B.id_company
-    group by A.id_company
-),
 
 renamed as (
 
-    select
-        
+    SELECT 
         id_company,
-        total_staff,
-        total_salary,
-        average_salary
-
-    from src_staff_salary_company
+        total_salary_company,
+        employees_per_company,
+        id_working_hours,
+        id_job_level
+    FROM src_staff_salary_department_address
 
 )
 

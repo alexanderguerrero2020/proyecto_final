@@ -9,12 +9,13 @@ source as (
 renamed as (
 
     select
-    
-        id_company,
-        total_staff,
-        total_salary,
-        average_salary    
 
+        id_company,
+        total_salary_company,
+        employees_per_company,
+        id_working_hours,
+        id_job_level  
+        
     from source
 
 )

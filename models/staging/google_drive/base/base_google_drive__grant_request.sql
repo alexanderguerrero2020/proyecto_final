@@ -1,11 +1,3 @@
-{{
-    config(
-        materialized='incremental',
-        unique_key='id',
-        on_schema_change='fail'
-    )
-}}
-
 with 
 
 source as (
@@ -32,3 +24,4 @@ renamed as (
 )
 
 select * from renamed
+

@@ -1,4 +1,4 @@
-{% snapshot company_snapshot %}
+{% snapshot snapshot_employee %}
 
 {{
     config(
@@ -10,6 +10,6 @@
     )
 }}
 
-select * from {{ source('google_drive', 'company') }}
+select * from {{ source('google_drive', 'employee') }}
 
 {% endsnapshot %}

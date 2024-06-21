@@ -622,6 +622,15 @@ models:
   - name: fct__company_shareholder
     description: ""
     columns:
+      - name: id_company_shareholeder
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__company')
+              field: id_company
+        description: "{{ doc('company') }}"
+
       - name: id_company
         data_type: varchar(256)
         tests:
@@ -639,6 +648,13 @@ models:
               to: ref('dim__shareholder')
               field: id_shareholder
         description: "{{ doc('shareholder') }}"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+          - dbt_utils.not_empty_string
+        data_type: TIMESTAMP_TZ(9)
+        description: "{{ doc('fivetran') }}"
 
   - name: fct__crew_info
     description: ""
@@ -697,9 +713,6 @@ models:
         data_type: varchar(256)
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_google_drive__grant_request')
-              field: id_grant_request
         description: "{{ doc('grant_request') }}"
 
       - name: title_grant_request
@@ -734,6 +747,13 @@ models:
               to: ref('dim__grant_request_status')
               field: id_status
         description: "{{ doc('grant_request') }}"
+
+      - name: utc_date_load
+        tests:
+          - not_null
+          - dbt_utils.not_empty_string
+        data_type: TIMESTAMP_TZ(9)
+        description: "{{ doc('fivetran') }}"
 
   - name: fct__staff_salary
     description: ""

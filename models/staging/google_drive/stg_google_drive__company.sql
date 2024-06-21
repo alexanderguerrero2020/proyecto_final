@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ ref('company_snapshot') }}
+    select * from {{ ref('snapshot_company') }}
     WHERE dbt_valid_to IS NULL
 ),
 
