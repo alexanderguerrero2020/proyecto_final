@@ -1,7 +1,7 @@
 {{
     config(
         materialized='incremental',
-        unique_key=['id_company_shareholder'],
+        unique_key=['id_company', 'id_shareholder'],
         on_schema_change='fail'
     )
 }}

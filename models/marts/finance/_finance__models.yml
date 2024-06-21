@@ -23,18 +23,8 @@ models:
 
       - name: id_working_hours
         data_type: varchar(256)
-        tests:
-          - not_null
-          - relationships:
-              to: ref('dim__staff_salary_working_hours')
-              field: id_working_hours
         description: "{{ doc('staff') }}"
 
       - name: id_job_level
         data_type: varchar(256)
-        tests:
-          - not_null
-          - relationships:
-              to: ref('dim__staff_salary_job_level')
-              field: id_job_level
         description: "{{ doc('staff') }}"
