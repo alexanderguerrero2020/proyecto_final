@@ -13,14 +13,28 @@ models:
               field: id_company
         description: "{{ doc('company') }}"
 
-      - name: total_staff
-        data_type: number
-        description: "{{ doc('staff') }}"
-
-      - name: total_salary
+      - name: total_salary_company
         data_type: float
         description: "{{ doc('staff') }}"
 
-      - name: average_salary
-        data_type: float
+      - name: employees_per_company
+        data_type: int
+        description: "{{ doc('staff') }}"
+
+      - name: id_working_hours
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_working_hours')
+              field: id_working_hours
+        description: "{{ doc('staff') }}"
+
+      - name: id_job_level
+        data_type: varchar(256)
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim__staff_salary_job_level')
+              field: id_job_level
         description: "{{ doc('staff') }}"

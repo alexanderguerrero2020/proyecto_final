@@ -12,7 +12,7 @@ models:
         description: "{{ doc('city') }}"
 
       - name: name_city
-        data_type: varchar(256)
+        data_type: varchar(256)        
         description: "{{ doc('city') }}"
 
       - name: code_country
@@ -180,6 +180,12 @@ models:
   - name: stg_google_drive__company_shareholder
     description: ""
     columns:
+      - name: id_company_shareholder
+        data_type: varchar(256)
+        tests:
+          - not_null
+        description: "{{ doc('company') }}"
+
       - name: id_company
         data_type: varchar(256)
         tests:

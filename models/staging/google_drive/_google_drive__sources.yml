@@ -16,13 +16,15 @@ sources:
 
     tables:
       - name: city
-        description: "This table stores information about major cities in Europe. It is used in conjunction with other tables that require city details, such as company addresses."
+        description: "Esta tabla almacena información sobre las principales ciudades de Europa. Se utiliza junto con otras tablas que requieren detalles de la ciudad, como direcciones de empresas.."
         columns:
           - name: id
             tests:
               - unique
               - not_null
           - name: name
+            tests:
+              - not_null
           - name: country_code
             tests:
               - not_null
@@ -30,6 +32,8 @@ sources:
                   to: source('google_drive', 'country')
                   field: code
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: company
         description: "La empresa está diseñada para almacenar información completa sobre varias productoras de películas en Europa. Contiene detalles esenciales sobre cada empresa, que van desde identificación básica y detalles de ubicación hasta datos financieros e información de registro."
@@ -37,7 +41,10 @@ sources:
           - name: id
             tests:
               - unique
+              - not_null
           - name: name
+            tests:
+              - not_null
           - name: address
           - name: zip_code
           - name: city_id
@@ -59,16 +66,31 @@ sources:
                   to: source('google_drive', 'kind_of_organization')
                   field: id
           - name: total_asset
+            tests:
+              - not_null
           - name: total_liability
+            tests:
+              - not_null
           - name: registration_body_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source('google_drive', 'registration_body')
+                  field: id
           - name: registration_date
+            tests:
+              - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
+
 
       - name: company_film
         description: "Esta tabla establece una relación de muchos a muchos entre empresas y películas. Permite la asociación de múltiples empresas con múltiples películas, acomodando escenarios en los que una sola película puede ser producida por más de una empresa o una empresa puede producir varias películas. Esta relación es crucial para rastrear las colaboraciones entre diferentes empresas en la producción de películas y para gestionar la diversa cartera de películas producidas por una sola empresa."
         columns:
           - name: company_id
             tests:
+              - not_null
               - relationships:
                   to: source('google_drive', 'company')
                   field: id
@@ -79,6 +101,9 @@ sources:
                   to: source('google_drive', 'film')
                   field: movie_code
           - name: _fivetran_synced
+            tests:
+              - not_null
+
 
       - name: company_grant
         description: "La tabla company_grant está diseñada para establecer y gestionar la relación entre las empresas y las subvenciones que solicitan o reciben. Esta mesa actúa como una mesa de unión en una relación de muchos a muchos, vinculando a las empresas con varias subvenciones."
@@ -96,6 +121,8 @@ sources:
                   to: source('google_drive', 'grant_request')
                   field: id
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: company_shareholder
         description: "Esta tabla está diseñada para crear una relación de muchos a muchos entre empresas y accionistas. Tiene el propósito de vincular a múltiples accionistas con múltiples empresas, permitiendo una representación detallada de las estructuras accionariales dentro de la industria cinematográfica."
@@ -113,6 +140,9 @@ sources:
                   to: source('google_drive', 'shareholder')
                   field: id
           - name: _fivetran_synced
+            tests:
+              - not_null
+
 
       - name: country
         description: "Esta tabla se encarga de almacenar información sobre los países. Desempeña un papel crucial al proporcionar detalles específicos de cada país, que se utilizan junto con otras tablas que requieren dicha información (por ejemplo, para especificar el país de las empresas, accionistas u organismos de registro)."
@@ -120,14 +150,19 @@ sources:
           - name: code
             tests:
               - unique
+              - not_null
           - name: name
+            tests:
+              - not_null
           - name: isd_code
             tests:
               - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: crew
-        description: ""
+        description: "La tabla de personal funciona para asociar empleados con roles específicos dentro del equipo de producción. Esta tabla es esencial para realizar un seguimiento de qué miembros del equipo (identificados por sus ID de empleado) están asignados a diversos roles (definidos en la tabla de roles) en proyectos de producción cinematográfica."
         columns:
           - name: sn
             tests:
@@ -142,6 +177,8 @@ sources:
                   to: source('google_drive', 'role')
                   field: id
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: crew_info
         description: "Esta tabla actúa como un depósito central de datos relacionados con el personal, enfatizando aspectos financieros como tarifas por hora, bonificaciones diarias, bonificaciones de escena y otros incentivos. Apoya la gestión de nóminas, la elaboración de presupuestos para los costos de producción cinematográfica y proporciona una forma estructurada de analizar la distribución de recursos financieros entre los miembros del equipo en función de sus roles y contribuciones a una película."
@@ -165,11 +202,24 @@ sources:
                   to: source('google_drive', 'role')
                   field: id
           - name: hourly_rate
+            tests:
+              - not_null
           - name: daily_bonus
+            tests:
+              - not_null
           - name: scene_bonus
+            tests:
+              - not_null
           - name: completion_bonus
+            tests:
+              - not_null
           - name: contractual_incentive
+            tests:
+              - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
+
 
       - name: department
         description: "La tabla de departamentos está diseñada para gestionar y categorizar varios departamentos administrativos integrales para el funcionamiento de las empresas de producción cinematográfica. Esto incluye departamentos como Recursos Humanos, Asuntos Legales, Marketing, Finanzas y otros que desempeñan roles clave en las funciones administrativas y de soporte de la empresa."
@@ -177,8 +227,13 @@ sources:
           - name: id
             tests:
               - unique
+              - not_null
           - name: name
+            tests:
+              - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: department_address
         description: "La tabla depart_address está diseñada para almacenar y administrar los detalles de las direcciones físicas de varios departamentos dentro de las empresas de producción cinematográfica. Esta tabla vincula los ID de departamento y de empresa con detalles específicos de edificios y direcciones, lo que proporciona una forma clara y organizada de realizar un seguimiento de dónde se encuentra cada departamento dentro de la infraestructura de la empresa."
@@ -198,6 +253,8 @@ sources:
           - name: building
           - name: address
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: film
         description: "This table is dedicated to storing comprehensive details about films produced by various companies within the database. It serves as a repository of information for each movie, including its unique identifier, title, release year, and the date it was first released."
@@ -205,10 +262,19 @@ sources:
           - name: movie_code
             tests:
               - unique
+              - not_null
           - name: title
+            tests:
+              - not_null
           - name: release_year
+            tests:
+              - not_null
           - name: first_released
+            tests:
+              - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
           
       - name: kind_of_organization
         description: "La tabla kind_of_organization está diseñada para clasificar los distintos tipos de organizaciones involucradas en la producción cinematográfica. Esta tabla es fundamental para categorizar empresas según su estructura organizativa o tipo de negocio."
@@ -216,8 +282,13 @@ sources:
           - name: id
             tests:
               - unique
+              - not_null
           - name: name
+            tests:
+              - not_null
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: registration_body
         description: "La tabla Registration_body se crea para almacenar información sobre varios organismos de registro. Por lo general, se trata de organizaciones responsables del registro oficial y la regulación de las empresas de producción cinematográfica, generalmente dentro de países específicos."
@@ -234,6 +305,8 @@ sources:
                   field: code
           - name: price
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: shareholder
         description: "La tabla de accionistas está estructurada para registrar información detallada sobre las personas que poseen acciones en varias empresas de producción cinematográfica. Esta tabla rastrea la identidad de los accionistas, los datos de contacto y su conexión con países específicos."
@@ -242,7 +315,11 @@ sources:
             tests:
               - unique
           - name: first_name
+            tests:
+              - not_null
           - name: last_name
+            tests:
+              - not_null
           - name: country_code
             tests:
               - not_null
@@ -256,6 +333,8 @@ sources:
           - name: national_insurance_number
           - name: passport_number
           - name: _fivetran_synced
+            tests:
+              - not_null
 
       - name: staff
         description: "La tabla de personal está diseñada para gestionar y vincular a los miembros del personal (empleados que no pertenecen al personal) con sus respectivos departamentos administrativos. Esta mesa sirve como punto de unión clave entre los empleados y los distintos departamentos en los que trabajan, como Recursos Humanos, Asuntos Jurídicos, Marketing, etc."
@@ -263,9 +342,11 @@ sources:
           - name: sn
             tests:
               - unique
+              - not_null
           - name: staff_id
             tests:
               - unique
+              - not_null
           - name: department_id
             tests:
               - not_null
@@ -273,3 +354,5 @@ sources:
                   to: source('google_drive', 'department')
                   field: id
           - name: _fivetran_synced
+            tests:
+              - not_null

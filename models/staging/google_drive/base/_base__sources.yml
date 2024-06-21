@@ -55,7 +55,6 @@ sources:
             tests:
               - not_null
               - unique
-              # - valid_email
           - name: _fivetran_synced
 
       - name: grant_request
@@ -74,14 +73,10 @@ sources:
               - not_null
               - dbt_utils.not_empty_string
           - name: maximun_monetary_value
-            # tests:
-              # - not_null
-              # - positive_values
           - name: desired_amount
             tests:
               - not_null
               - dbt_utils.not_empty_string
-              # - positive_values
           - name: application_date
             tests:
               - not_null
@@ -160,5 +155,4 @@ sources:
           - name: salary
             tests:
               - not_null
-              # - positive_values
           - name: _fivetran_synced
